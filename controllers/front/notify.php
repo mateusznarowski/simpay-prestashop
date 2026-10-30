@@ -205,7 +205,8 @@ final class SimpayNotifyModuleFrontController extends ModuleFrontController
         }
 
         $incoming = (float) ($payload['amount']['original_value'] ?? 0);
-        $expected = (float) $order->getTotalPaid();
+        // Compare against the amount due, not payments already recorded.
+        $expected = (float) $order->getOrdersTotalPaid();
         if ($incoming > 0 && !AmountVerifier::isAmountSufficient($expected, $incoming)) {
             SimPayLogger::error(
                 $this->trans('Amount too low', [], 'Modules.Simpay.Logs'),

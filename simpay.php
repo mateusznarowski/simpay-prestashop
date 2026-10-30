@@ -82,7 +82,7 @@ final class Simpay extends PaymentModule
     {
         $this->name = 'simpay';
         $this->tab = 'payments_gateways';
-        $this->version = '1.2.7';
+        $this->version = '1.2.8';
         $this->author = 'Payments Solution Sp. z o.o.';
         $this->ps_versions_compliancy = [
             'min' => '8.0.0',
@@ -113,7 +113,7 @@ final class Simpay extends PaymentModule
         if (!$this->ensureOrderState(self::CONFIG_OS_AWAITING, [
             'en' => 'Awaiting SimPay payment',
             'pl' => 'Oczekuje na płatność SimPay',
-        ], '#03d14e', true)) {
+        ], '#03d14e', false)) {
             return false;
         }
 
@@ -124,7 +124,7 @@ final class Simpay extends PaymentModule
                 'pl' => 'Płatność SimPay wygasła',
             ],
             '#03d14e',
-            true,
+            false,
             false,
             false,
             false,
